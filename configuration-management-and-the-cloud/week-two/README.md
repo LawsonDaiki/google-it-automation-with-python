@@ -24,7 +24,7 @@ Q: Which of the following file extensions does the manifest file need to end wit
 
 ### Managing Resource Relationships
 
-The Puppet manifests that we use to manage computers in our fleet usually include a bunch of different resources that are related to each other. You're not going to configure a package that's not installed and you don't want to start a service until both the package and the configuration are in place. Puppets lets us control this with *resource relationships*.
+The Puppet manifests that we use to manage computers in our fleet usually include a bunch of different resources that are related to each other. You're not going to configure a package that's not installed and you don't want to start a service until both the package and the configuration are in place. Puppets lets us control this with **resource relationships**.
 
 Example:
 
@@ -48,7 +48,7 @@ class ntp {
 include ntp
 ```
 
-We write resources types in lowercases when declaring them, but *capitalize* them when referring to them from another resource's attribute.
+We write resources types in lowercases when declaring them, but **capitalize** them when referring to them from another resource's attribute.
 
 To apply this rules locally, run the command:
 
