@@ -73,12 +73,16 @@ For example, to install the Apache module provided by Puppet Labs to check out h
 sudo apt install puppet-module-puppetlabs-apache
 ```
 
-To create a manifest file that includes the module we've just installed. Just create a manifest like this:
+To create a manifest file that includes the module we've just installed. Just create a manifest (with the name webserver.pp) like this:
 ```
 include ::apache
 ```
 
-Here, we're telling Puppet to include the Apache module. The double colon before the module name, let's puppet know that this is a global module. Let's save this file now and apply it using Puppet apply like we did before.
+Here, we're telling Puppet to include the Apache module. The double colon before the module name, let's puppet know that this is a global module. Let's save this file now and apply it using Puppet apply like we did before. Save this file and apply it using Puppet apply like we did before, using the command:
+
+```
+sudo puppet apply -v webserver.pp
+```
 
 ---
 
