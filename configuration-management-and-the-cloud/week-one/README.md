@@ -223,6 +223,8 @@ else {
 }
 ```
 
+Q: What is a fact in Puppet? A variable representing characteristics of a system. A fact is a hash that stores information about the details of a particular system.
+
 ### The Driving Principles of Configuration Management
 
 Unlike Python or C which are called procedural languages, Puppet is a **declarative language** because the desired state is declared rather than writing the steps to get there.
