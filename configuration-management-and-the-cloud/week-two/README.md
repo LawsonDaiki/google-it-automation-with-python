@@ -20,7 +20,44 @@ Checkout tools.pp file as an example.
 
 The **catalog** is the list of rules that are generated for one specific computer once the server has evaluated all variables, conditionals, and functions.
 
+Q: Which of the following file extensions does the manifest file need to end with in Puppet? '.pp'. Manifest files are where we store the rules to be applied.
+
 ### Managing Resource Relationships
+
+The Puppet manifests that we use to manage computers in our fleet usually include a bunch of different resources that are related to each other. You're not going to configure a package that's not installed and you don't want to start a service until both the package and the configuration are in place. Puppets lets us control this with *resource relationships*.
+
+Example:
+
+```
+class ntp {
+    package { 'ntp':
+        ensure => latest,
+    }
+    file { '/etc/ntp.conf':
+        source => 'home/user/ntp.conf',
+        replace => true,
+        require => Package['ntp'],
+        notify => Package['ntp'],
+    }
+    service {
+        enable => true,
+        ensure => running,
+        require => File['/etc/ntp.conf'],
+    }
+}
+include ntp
+```
+
+We write resources types in lowercases when declaring them, but *capitalize* them when referring to them from another resource's attribute.
+
+To apply this rules locally, run the command:
+
+```
+sudo puppet apply -v ntp.pp
+```
+
+Q: When we declare a resource type, how do we differentiate between the original resource type and the name of a resource relationship being referenced in another resource? Use lowercase for the original, and capitalize the resource name when referencing a relationship.
+
 
 Checkout ntp.pp file as an example.
 
