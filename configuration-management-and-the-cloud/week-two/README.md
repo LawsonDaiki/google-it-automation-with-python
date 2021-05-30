@@ -68,6 +68,18 @@ In puppet, manifests are organized into **modules**. A module is a collection of
 * Manifest directory which stores manifest and init.pp where it defines a class with the same name as the created module
 * Templates directory which stores any files that stores rules to be used
 
+For example, to install the Apache module provided by Puppet Labs to check out how this works, run the command:
+```
+sudo apt install puppet-module-puppetlabs-apache
+```
+
+To create a manifest file that includes the module we've just installed. Just create a manifest like this:
+```
+include ::apache
+```
+
+Here, we're telling Puppet to include the Apache module. The double colon before the module name, let's puppet know that this is a global module. Let's save this file now and apply it using Puppet apply like we did before.
+
 ---
 
 ## Deploying Puppet to Clients
