@@ -270,6 +270,20 @@ Check out the following links for more information:
 
 ---
 
+## Module Review
+
+### Module 1 Wrap Up: Automating with Configuration Management
+
+We called out that an important concept in today's IT world is to treat our infrastructure as code (*IaC*). This lets us manage our fleet of computers in a *consistent, versionable, reliable and repeatable* way.
+
+We've covered a lot of concepts related to configuration management, like how these tools use a *domain specific language* to help us clearly state what we want our system to look like after the tools have run.
+
+We've mentioned that the language is *declarative* because we declare our goals rather than detail the steps to get there, and most importantly the actions taken must be *idempotent* so that several runs of the same rules always lead to the same results.
+
+We looked into the puppet DSL syntax and checked out the most common resources: packages, files and services.
+
+---
+
 ## Credit
 
 * [Coursera - Configuration Management Cloud Week 1](https://www.coursera.org/learn/configuration-management-cloud/home/week/1)
