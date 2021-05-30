@@ -145,6 +145,12 @@ node webserver.example.com {
 }
 ```
 
+When a node requests which rules it should apply, Puppet will look at the node definitions, figure out which one matches the node's FQDN, and then give only those rules. To avoid repeating the inclusion of all the common classes, we might define a base class that does the work of including all the classes that are common to all node types.
+
+Now, where's this information stored? The node definitions are typically stored in a file called site.pp, which isn't part of any module. Instead, it just defines what classes will be included for what nodes.
+
+Q: In Puppet, what can we use to categorize in order to apply different rules to different systems? Node definitions. Different kinds of nodes are defined, allowing different sets of rule catalogs to apply to different types of machines.
+
 ### Puppet's Certificate Infrastructure
 
 Puppet uses __public key infrastructure (PKI)__, __secure sockets layer (SSL)__, to establish secure connections between the server and the clients.
