@@ -163,13 +163,9 @@ https://puppet.com/blog/deploy-packages-across-your-windows-estate-with-bolt-and
 
 ### Practice Quiz: Introduction to Puppet
 
-1. A Puppet agent inspects /etc/conf.d, determines the OS to be Gentoo Linux, then activates the Portage package manager. What is the provider in this scenario?
-
-R: Portage
+1. A Puppet agent inspects /etc/conf.d, determines the OS to be Gentoo Linux, then activates the Portage package manager. What is the provider in this scenario? Portage
 
 2. Which of the following examples show proper Puppet syntax?
-
-R:
 
 ```
 class AutoConfig {
@@ -187,17 +183,11 @@ class AutoConfig {
 }
 ```
 
-3. What is the benefit of grouping resources into classes when using Puppet?
+3. What is the benefit of grouping resources into classes when using Puppet? Configuration management is simplified.
 
-R: Configuration management is simplified
+4. What defines which provider will be used for a particular resource? Puppet assigns providers based on the resource type and data collected from the system.
 
-4. What defines which provider will be used for a particular resource?
-
-R: Puppet assigns providers based on the resource type and data collected from the system.
-
-5. In Puppet’s file resource type, which attribute overwrites content that already exists?
-
-R: Replace
+5. In Puppet’s file resource type, which attribute overwrites content that already exists? Replace.
 
 
 ---
