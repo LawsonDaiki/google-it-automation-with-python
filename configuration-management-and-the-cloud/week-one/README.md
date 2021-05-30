@@ -227,11 +227,11 @@ Q: What is a fact in Puppet? A variable representing characteristics of a system
 
 ### The Driving Principles of Configuration Management
 
-Unlike Python or C which are called procedural languages, Puppet is a **declarative language** because the desired state is declared rather than writing the steps to get there.
+Unlike Python or C which are called **procedural languages**, Puppet is a **declarative language** because the desired state is declared rather than writing the steps to get there.
 
 There are three important principles of congifuration management
 
-1. Idempotentcy
+1. Idempotency
 2. Test and repair paradigm
 3. Stateless
 
@@ -251,6 +251,15 @@ exec {'move example file':
 Another important aspect of how configuration management works is the **test and repair paradigm**. This means that actions are taken only when they are necessary to achieve a goal.
 
 Finally, another important characteristic is **stateless**, this means that there's no state being kept between runs of the agent.
+
+Q: What does idempotent mean? An action can be performed repeatedly without changing the system after the first run. We can use an attribute like onlyif to make sure a file is changed only if it exists.
+
+### Reading: More Information About Configuration Management
+
+Check out the following links for more information:
+
+- https://en.wikipedia.org/wiki/Domain-specific_language
+- http://radar.oreilly.com/2015/04/the-puppet-design-philosophy.html
 
 ---
 
