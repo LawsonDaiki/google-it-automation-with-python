@@ -153,6 +153,8 @@ Q: In Puppet, what can we use to categorize in order to apply different rules to
 
 ### Puppet's Certificate Infrastructure
 
+We've called that a few times that in typical Puppet deployments, all managed machines and the fleet connect to a Puppet server. The client send their facts to the server, and the server then processes the manifests, generates the corresponding catalog, and sends it back to the clients who apply it locally.
+
 Puppet uses __public key infrastructure (PKI)__, __secure sockets layer (SSL)__, to establish secure connections between the server and the clients.
 
 __Puppet comes with its own certificate authority__, which can be used to create certificates for each clients.
@@ -162,6 +164,8 @@ why do we care so much about the identity of the nodes? There's a bunch of reaso
 One of the reason why identity of the nodes matter is that the Puppet rules can sometimes include confidential information.
 
 * Automatic sign all requests feature is available in Puppet, it should be limited to test deployment and never used for real computers being used by real users
+
+Q: What is the purpose of the Certificate Authority (CA)? To validate the identity of each machine. The CA either queues a certificate request for manual validation, or uses pre-shared data to verify before sending the certificate to the agent.
 
 ---
 
