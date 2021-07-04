@@ -58,7 +58,7 @@ Puppet is the current industry standard for managing the configuration of comput
 Puppet is typically deploy using a client-server architecture.
 
 * The client is known as the Puppet agent
-* Te service is known as the Puppet master
+* The service is known as the Puppet master
 
 When using this model,
 
