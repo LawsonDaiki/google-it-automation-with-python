@@ -203,7 +203,7 @@ In the case of Puppet, the DSL is limited to operations related to when and how 
 
 On top of the basic resource types that we already checked out, Puppet's DSL includes variables, conditional statements, and functions.
 
-et's talk a bit about Puppet facts. Facts are variables that represent the characteristics of the system. When the Puppet agent runs, it calls a program called factor which analyzes the current system, storing the information it gathers in these facts. Once it's done, it sends the values for these facts to the server, which uses them to calculate the rules that should be applied
+Let's talk a bit about Puppet facts. Facts are variables that represent the characteristics of the system. When the Puppet agent runs, it calls a program called factor which analyzes the current system, storing the information it gathers in these facts. Once it's done, it sends the values for these facts to the server, which uses them to calculate the rules that should be applied
 
 Let's check out an example of a piece of Puppet code that makes use of one of the built-in facts. This piece of code is using the is-virtual fact together with a conditional statement to decide whether the smartmontools package should be installed or purged. This package is used for monitoring the state of hard drives using smart. So it's useful to have it installed in physical machines, but it doesn't make much sense to install it in our virtual machines. 
 
