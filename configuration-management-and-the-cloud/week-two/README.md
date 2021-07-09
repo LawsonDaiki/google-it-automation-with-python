@@ -180,6 +180,10 @@ Q: What is the purpose of the Certificate Authority (CA)? To validate the identi
 
 Q: What kind of security encryption is used when the Puppet Certificate Authority validates the identity of a node? Secure Sockets Layer (SSL). The Certificate Authority creates an SSL key for the agent machine and creates a certificate request.
 
+### Reading
+
+* http://www.masterzen.fr/2010/11/14/puppet-ssl-explained/
+
 ---
 
 ## Updating Deploymnets
