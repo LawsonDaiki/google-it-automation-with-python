@@ -72,6 +72,9 @@ We can put any resource we want into a module, but to keep our configuration man
 * Files directory: which includes files that are copied into the client machines without any changes like the ntp.conf file
 * Templates directory: which includes files that are preprocessed before they've been copied into the client machines. These templates can include values that get replaced after calculating the manifests, or sections that are only present if certain conditions are valid
 
+To check the module files just write this command:
+```tree modules/```
+
 For example, to install the Apache module provided by Puppet Labs to check out how this works, run the command:
 ```
 sudo apt install puppet-module-puppetlabs-apache
