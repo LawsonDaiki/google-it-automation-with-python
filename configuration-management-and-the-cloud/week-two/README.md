@@ -66,6 +66,7 @@ Checkout ntp.pp file as an example.
 ### Organizing Your Puppet Modules
 
 In puppet, manifests are organized into **modules**. A module is a collection of manifests and associated data.
+We can put any resource we want into a module, but to keep our configuration management organized, we'll group things together under a sensible topic. For example, we could have a module for everything related to monitoring the computer's health, another one for setting up the network stack, and yet another one for configuring a web serving application. So the module ship the manifest in the associated data, but how is this organized? All manifests gets stored in a directory called manifests. The rest of the data is stored in different directories depending on what it does. The files directory includes files that are copied into the client machines without any changes, like the ntp.conf file that we saw in our last video. The template's directory includes files that are preprocessed before they've been copied into the client machines. These templates can include values that get replaced after calculating the manifests, or sections that are only present if certain conditions are valid.
 
 * Manifest directory which stores manifest and init.pp where it defines a class with the same name as the created module
 * Templates directory which stores any files that stores rules to be used
