@@ -50,6 +50,8 @@ include ntp
 
 We write resources types in lowercases when declaring them, but **capitalize** them when referring to them from another resource's attribute.
 
+Typically, the class is defined in one file and include it in another. We'll checkout examples for this in later videos. 
+
 To apply this rules locally, run the command:
 
 ```
