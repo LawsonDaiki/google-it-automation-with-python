@@ -91,6 +91,8 @@ Here, we're telling Puppet to include the Apache module. The double colon before
 sudo puppet apply -v webserver.pp
 ```
 
+Q: What do we call a collection of manifests, and folders containing associated data? Module. A module is an easy way to organize our configuration management tools.
+
 ### Reading: More Information About Deploying Puppet Locally
 
 Check out the following links for more information:
