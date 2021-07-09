@@ -176,6 +176,10 @@ One of the reason why identity of the nodes matter is that the Puppet rules can 
 
 Q: What is the purpose of the Certificate Authority (CA)? To validate the identity of each machine. The CA either queues a certificate request for manual validation, or uses pre-shared data to verify before sending the certificate to the agent.
 
+### Setting up Puppet Clients and Servers
+
+Q: What kind of security encryption is used when the Puppet Certificate Authority validates the identity of a node? Secure Sockets Layer (SSL). The Certificate Authority creates an SSL key for the agent machine and creates a certificate request.
+
 ---
 
 ## Updating Deploymnets
