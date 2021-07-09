@@ -184,6 +184,14 @@ Q: What kind of security encryption is used when the Puppet Certificate Authorit
 
 * http://www.masterzen.fr/2010/11/14/puppet-ssl-explained/
 
+### Practice Quiz: Deploying Puppet to Clients
+
+1. When defining nodes, how do we identify a specific node that we want to set rules for? By specifying the node's Fully Qualified Domain Names (FQDNs). A FQDN is a complete domain name for a specific machine that contains both the hostname and the domain name.
+2. When a Puppet agent evaluates the state of each component in the manifest, it uses gathered facts about the system to decide which rules to apply. What tool can these facts be "plugged into" in order to simplify management of the content of our Puppet configuration files? Templates. Templates are documents that combine code, system facts, and text to render a configuration output fitting predefined rules.
+3. What is the first thing that happens after a node connects to the Puppet master for the first time? The node requests a certificate. After receiving a certificate, the node will reuse it for subsequent logins.
+4. What does FQDN stand for, and what is it? Fully Qualified Domain Name, which is the full address for a node. A fully qualified domain name (FQDN) is the unabbreviated name for a particular computer, or server. There are two elements of the FQDN: the hostname and the domain name.
+5. What type of cryptographic security framework does Puppet use to authenticate individual nodes? Public Key Infrastructure (PKI). Puppet uses an Secure Sockets Layer (SSL) Public Key Infrastructure to authenticate both nodes and masters.
+
 ---
 
 ## Updating Deploymnets
