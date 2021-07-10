@@ -62,6 +62,30 @@ This is another place where a load balancer and instance groups can help us out.
 
 Q: Automation tools are used to manage the software development phase's build and test functions. Which of the following is the set of development practices focusing on these aspects? Continuous Integration. Continuous Integration means the software is built, uploaded, and tested constantly.
 
+## Understanding Limitations
+
+Some API calls used in Cloud services can be expensive to perform, so most Cloud providers will enforce **rate limits** on these calls to prevent one service from overloading the whole system. For example, there might be a rate limit of one call per second for an expensive API call. On top of that, there are also utilization limits, which cap the total amount of a certain resource that you can provision. These quotas are there to help you avoid unintentionally allocating more resources than you wanted. Imagine you've configured your service to use auto scaling and it suddenly receives a huge spike in traffic. This could mean a lot of new instances getting deployed which can cost a lot of money.
+
+On top of that, there are also **utilization limits**, which cap the total amount of a certain resource that you can provision. These quotas are there to help you avoid unintentionally allocating more resources than you wanted. Imagine you've configured your service to use auto scaling and it suddenly receives a huge spike in traffic.
+
+Q: What is the purpose of a rate limit? To prevent overloading the entire system with one service. Cloud providers will often enforce rate limits on resource-hungry service calls to prevent one service from overloading the entire system.
+
+## Reading: More About Cloud Providers
+
+Here are some links to some common Quotas you’ll find in various cloud providers
+
+* https://cloud.google.com/compute/quotas#understanding_vm_cpu_and_ip_address_quotas
+* https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html
+* https://docs.microsoft.com/en-us/azure/azure-subscription-service-limits#service-specific-limits
+
+## Practice Quiz: Building Software for the Cloud
+
+1. What is latency in terms of Cloud storage? The amount of time it takes to complete a read or write operation. Latency is the amount of time it takes to complete a read or write operation.
+2. Which of the following statements about sticky sessions are true? (Select all that apply.) All requests from the same client always go to the same backend server. They should only be used when needed. They can cause problems during migration.
+3. If you run into limitations such as rate limits or utilization limits, you should contact the Cloud provider and ask for a (). Quota increase. Our cloud provider can increase our limits that we have set, though it will cost more money.
+4. What is the term referring to everything needed to run a service? Enviroment.  Everything used to run the service is referred to as the environment. This includes the machines and networks used for running the service, the deployed code, the configuration management, the application configurations, and the customer data.
+5. What is the term referring to a network of hosts spread in different geographical locations, allowing ISPs to be as close as possible to content? Content delivery network. CDNs allow an ISP to select the closest server for the content it is requesting.
+
 ---
 
 ## Credit
