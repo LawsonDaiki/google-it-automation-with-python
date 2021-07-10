@@ -47,6 +47,21 @@ There are some providers dedicated to bringing the contents of your services as 
 
 Q: Which description fits the Round-robin DNS load balancing method? Each client is served in turn. The Round-robin approach serves clients one at a time, starting with the first, and making rounds until it reaches the beginning again.
 
+### Change Management
+Change management is making changes in a controlled and safe way to fix bugs and improve features in our services.
+
+A **continuous integration system** will build and test our code every time there's a change.
+
+We can configure our CD to push to different environments based on some rules. What do we mean by that? In an earlier video, we mentioned that when pushing puppet changes, we should have a **test environment** separate from the production environment (environment means everything needed to run the service). Having them separate lets us validate that changes work correctly before they affect users. The test environment needs to be similar enough to prod that we can use them to check our changes work correctly. You could have your CD system configured to push new changes to the test environment. You can then check that the service is still working correctly there, and then manually tell your deployment system to push those same changes to production.
+
+If the service is complex and there are a bunch of different developers making changes to it, you might set up additional environments where the developers can test their changes in different stages before releasing them. For example, you might have your CD system push all new changes to a development or **dev environment**, then have a separate environment called **pre-prod**, which only gets specific changes after approval. And only after a thorough testing, these changes get pushed to prod. You want to deploy it to one of those testing or development environments to make sure it works correctly before you ship it to prod.
+
+In **A/B testing**, some requests are served using one set of code and configuration, A, and other requests are served using a different set of of code and configuration, B. When you have something that you want to test in production with real customers, you can experiment using A/B testing. In A/B testing, some requests are served using one set of code and configuration, A, and other requests are served using a different set of of code and configuration, B.
+
+This is another place where a load balancer and instance groups can help us out. You can deploy one instance group in your A configuration and a second instance group in your B configuration. Then by changing the configuration of the load balancer, you can direct different percentages of inbound requests to those two configurations. If your A configuration is today's production configuration and your B configuration is something experimental, you might want to start by only directing 1 % of your requests to B. Then you can slowly ramp up the percentage that you check out whether the B configuration performs better than A, or not. Heads up, make sure you have basic monitoring so that it's easy to tell if A or B is performing better or worse.
+
+Q: Automation tools are used to manage the software development phase's build and test functions. Which of the following is the set of development practices focusing on these aspects? Continuous Integration. Continuous Integration means the software is built, uploaded, and tested constantly.
+
 ---
 
 ## Credit
