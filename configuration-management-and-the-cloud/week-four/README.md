@@ -88,6 +88,50 @@ Here are some links to some common Quotas you’ll find in various cloud provide
 
 ---
 
+### Monitoring and Alerting
+
+## Getting Started with Monitoring
+
+**Monitoring** lets us look into the history and current status of a system.
+
+How can we know what the status is? We'll check out a bunch of different **metrics**. These metrics tell us if the service is behaving as expected or not. Well, some metrics are generic, like how much memory an instance is using. Other metrics are specific to the service we want to monitor. If you're running an e-commerce site, you'll care about how many purchases were made successfully and how many failed to complete.
+
+There's a bunch of different **monitoring systems** out there. Some systems like AWS Cloudwatch, Google Stack Driver, or Azure Metrics are offered directly by the Cloud providers. Other systems like Prometheus, Datadog, or Nagios can be used across vendors.
+
+**Pro tip:** you only want to store the metrics that you care about, since storing all of these metrics in the system takes space, and storage space costs money.
+
+Q: Which of the following monitoring models is being used if our monitoring system requires our service to actively send metrics? Push Model. When **push** monitoring is used, the service being monitored actively sends metrics to the monitoring system.
+
+**Whitebox monitoring** checks the behavior of the system from the inside, it's when we collect metrics from inside a system, like how much storage space the service is currently using or how long it takes to process a request, this is called whitebox monitoring
+
+On the flip side, **blackbox monitoring** checks the behavior of the system from the outside. This is typically done by making a request to the service and then checking that the actual response matches the expected response. We can use this to do a very simple check to know if the service is up and to verify if the service is responding from outside your network. Or we could use it to see how long it takes for a client in a different part of the world to get a response from the system.
+
+## Getting Alerts When Things Go Wrong
+
+The most basic approach is to run a job periodically that checks the health of the system and sends out an email if the system isn't healthy. On a Linux system, we could do this using **cron**, which is the tool to schedule periodic jobs. We'd pair this with a simple Python script that checks the service and sends any necessary emails. This is an extremely simplified version of an alerting system, but it shares the same principles. Is all alerting systems, no matter how complex and advanced.
+
+**Raising an alert signals** that something is broken and a human needs to respond. For example, you can set up your system to raise alerts if the application is using more than 10 gigabytes of RAM, or if it's responding with too many 500 errors, or if the queue of requests waiting to get processed gets too long.
+
+Type of alert:
+
+* Those that need immediate attention are called **pages**, which comes from a device called a pager.
+
+One thing to highlight is that all alerts should be **actionable**. If you get a bug or a page and there's nothing for you to do, then the alert isn't actionable and it should be changed or it shouldn't be there at all. Otherwise, it's just noise.
+
+To set up good alerts, we need to figure out which situations should page, which ones should create bugs, and which ones we just don't care about.
+
+Q: What do we call an alert that requires immediate attention? Page. Pages are alerts that need immediate human attention, and are often in the form of SMS or email.
+
+## Service-Level Objectives
+
+No system is ever available 100% of the time, it's just not possible. But depending on how critical the service is, it can have different service level objectives, or **SLOs**. SLOs are pre-established performance goals for a specific service. Setting these objectives helps manage the expectations of the service users, and the targets also guide the work of those responsible for keeping the service running. **SLOs need to be measurable**, which means that there should be metrics that track how the service is performing and let you check if it's meeting the objectives or not.
+
+Availability targets like this one are commonly named by their **number of nines**. Our 99% example would be a two 9 service, 99.9% availability is a three 9 service, 99.999% availability is a five 9 service. **Five nine** services promised a total down time of up to five minutes in a year. Five nines is super high availability, reserved only for the most critical systems. A **three nine** service, aiming for a maximum of eight hours of downtime per year, is fine for a lot of IT systems. Five nine services usually require a much **larger team** of engineers to maintain it.
+
+Any service can have a bunch of different service level objectives like these, they tell its users what to expect from it. Some services, like those that we pay for, also have more strict promises in the form of **service level agreements**, or **SLAs**. A service level agreement is a commitment between a provider and a client.
+
+Q: If our service has a Service Level Objective (SLO) of four-nines, what is our error budget measured in downtime percentage? .01% . If we have an SLO of 99.99%, that gives us an error budget of .01%.
+
 ## Credit
 
 * [Coursera - Configuration Management Cloud Week 4](https://www.coursera.org/learn/configuration-management-cloud/home/week/4)
