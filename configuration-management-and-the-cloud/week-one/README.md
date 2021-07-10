@@ -1,4 +1,4 @@
-# Crash Course of Python - Week 1
+# Configuration Management and the Cloud - Week 1
 
 ## Learning Objectives
 
