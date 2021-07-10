@@ -132,6 +132,32 @@ Any service can have a bunch of different service level objectives like these, t
 
 Q: If our service has a Service Level Objective (SLO) of four-nines, what is our error budget measured in downtime percentage? .01% . If we have an SLO of 99.99%, that gives us an error budget of .01%.
 
+## Basic Monitoring in GCP
+
+For this demonstration, we'll use the monitoring tool called **Stackdriver**, which is part of the overall offering.
+
+It's common practice to use **time windows of one, five, or even 10 minutes when dealing with the alerting**. We don't want to get an alert for a small spike that lasted only a few seconds and then went away. We want to get alerted when there's an actual problem that requires our attention.
+
+Q: What type of policy requires us to set up a condition which notifies us when it’s triggered? Alerting policy. An Alerting Policy specifies the conditions that trigger alerts, and the actions to be taken when these alerts are triggered, like sending an email address notification.
+
+## Reading: More Information on Monitoring and Alerting
+
+Check out the following links for more information:
+
+* https://www.datadoghq.com/blog/monitoring-101-collecting-data/
+* https://www.digitalocean.com/community/tutorials/an-introduction-to-metrics-monitoring-and-alerting
+* https://en.wikipedia.org/wiki/High_availability
+* https://landing.google.com/sre/books/
+
+## Practice Quiz: Monitoring & Alerting
+
+1. What is a Service Level Agreement? A  strict commitment between a provider and a client. A service-level agreement is an arrangement between two or more parties, one being the client and the other being service providers.
+2. What is the most important aspect of an alert? It must be actionable. If an alert notification is not actionable, it should not be an alert at all.
+3. Which part of an HTTP message from a web server is useful for tracking the overall status of the response and can be  monitored and logged? The response code in the server's message. We can log and monitor these response codes, and even use them to set alert conditions.
+4. To set up a new alert, we have to configure the () that triggers the alert. Condition. We must define what occurence or metric threshold will serve as a conditional trigger for our alert.
+5. When we collect metrics from inside a system, this is known as () monitoring. White-Box. A white-box monitoring system is one that collects metrics internally, from within the system being monitored.
+
+
 ## Credit
 
 * [Coursera - Configuration Management Cloud Week 4](https://www.coursera.org/learn/configuration-management-cloud/home/week/4)
