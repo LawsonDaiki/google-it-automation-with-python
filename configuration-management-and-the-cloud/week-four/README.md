@@ -88,9 +88,9 @@ Here are some links to some common Quotas you’ll find in various cloud provide
 
 ---
 
-### Monitoring and Alerting
+## Monitoring and Alerting
 
-## Getting Started with Monitoring
+### Getting Started with Monitoring
 
 **Monitoring** lets us look into the history and current status of a system.
 
@@ -106,7 +106,7 @@ Q: Which of the following monitoring models is being used if our monitoring syst
 
 On the flip side, **blackbox monitoring** checks the behavior of the system from the outside. This is typically done by making a request to the service and then checking that the actual response matches the expected response. We can use this to do a very simple check to know if the service is up and to verify if the service is responding from outside your network. Or we could use it to see how long it takes for a client in a different part of the world to get a response from the system.
 
-## Getting Alerts When Things Go Wrong
+### Getting Alerts When Things Go Wrong
 
 The most basic approach is to run a job periodically that checks the health of the system and sends out an email if the system isn't healthy. On a Linux system, we could do this using **cron**, which is the tool to schedule periodic jobs. We'd pair this with a simple Python script that checks the service and sends any necessary emails. This is an extremely simplified version of an alerting system, but it shares the same principles. Is all alerting systems, no matter how complex and advanced.
 
@@ -122,7 +122,7 @@ To set up good alerts, we need to figure out which situations should page, which
 
 Q: What do we call an alert that requires immediate attention? Page. Pages are alerts that need immediate human attention, and are often in the form of SMS or email.
 
-## Service-Level Objectives
+### Service-Level Objectives
 
 No system is ever available 100% of the time, it's just not possible. But depending on how critical the service is, it can have different service level objectives, or **SLOs**. SLOs are pre-established performance goals for a specific service. Setting these objectives helps manage the expectations of the service users, and the targets also guide the work of those responsible for keeping the service running. **SLOs need to be measurable**, which means that there should be metrics that track how the service is performing and let you check if it's meeting the objectives or not.
 
@@ -132,7 +132,7 @@ Any service can have a bunch of different service level objectives like these, t
 
 Q: If our service has a Service Level Objective (SLO) of four-nines, what is our error budget measured in downtime percentage? .01% . If we have an SLO of 99.99%, that gives us an error budget of .01%.
 
-## Basic Monitoring in GCP
+### Basic Monitoring in GCP
 
 For this demonstration, we'll use the monitoring tool called **Stackdriver**, which is part of the overall offering.
 
@@ -140,7 +140,7 @@ It's common practice to use **time windows of one, five, or even 10 minutes when
 
 Q: What type of policy requires us to set up a condition which notifies us when it’s triggered? Alerting policy. An Alerting Policy specifies the conditions that trigger alerts, and the actions to be taken when these alerts are triggered, like sending an email address notification.
 
-## Reading: More Information on Monitoring and Alerting
+### Reading: More Information on Monitoring and Alerting
 
 Check out the following links for more information:
 
@@ -149,7 +149,7 @@ Check out the following links for more information:
 * https://en.wikipedia.org/wiki/High_availability
 * https://landing.google.com/sre/books/
 
-## Practice Quiz: Monitoring & Alerting
+### Practice Quiz: Monitoring & Alerting
 
 1. What is a Service Level Agreement? A  strict commitment between a provider and a client. A service-level agreement is an arrangement between two or more parties, one being the client and the other being service providers.
 2. What is the most important aspect of an alert? It must be actionable. If an alert notification is not actionable, it should not be an alert at all.
@@ -157,6 +157,38 @@ Check out the following links for more information:
 4. To set up a new alert, we have to configure the () that triggers the alert. Condition. We must define what occurence or metric threshold will serve as a conditional trigger for our alert.
 5. When we collect metrics from inside a system, this is known as () monitoring. White-Box. A white-box monitoring system is one that collects metrics internally, from within the system being monitored.
 
+---
+
+## Troubleshooting and Debugging
+
+### What to Do When You Can't Be Physically There
+
+If something went wrong, but you don't know exactly what.You could deploy new VMs with the **previous version** of the system, this would help us get back to a healthy state as quickly as possible. On top of this, you want to understand the problem and how to fix it. To do that, you can create a **snapshot of the disk image** for one of the failing VMs. And then mount that disk image on a healthy machine. That way you can analyze the contents of the image and figure out what's causing the failures.
+
+it's not always easy to know which piece of the system is causing a failure. Especially if the system is complex with many different services interacting with each other. If you're trying to figure out what's causing your complex servers to respond with a ton of 500s. You need to look at different pieces individually until you find the culprit.
+
+* Does the problem happen if you run the service and a test VM?
+* Without any load balancers or caching servers in between?
+* Does it happen if you run the service locally on your workstation?
+
+The more you can isolate the faulty behavior, the easier it is to fix it.
+
+Setting up a **testing environment** might take time and effort. So it's a good idea to do this in advance before any problem actually happens. That way you don't need to do it under pressure when your users are complaining that the system's down.
+
+When you run your service in the cloud, you need to learn where to find the **logs**. That the provider keeps and what info is available in which logs. Some cloud providers offer centralized log solutions to collect all your logs in one place. You can have all your notes, send info, warning and error messages to the log collection point. Then, when you're trying to debug a problem, you can easily see everything that was going on when the error occurred.
+
+Q: Which of the following is a valid method of troubleshooting a cloud service? (Select all that apply) 
+
+* Run a test VM in a test environment. Testing through software is always our best bet in the cloud.
+* Call the service provider. Part of the beauty of running services in the Cloud is that you aren't responsible for everything! Most Cloud providers are happy to provide various levels of support.
+
+### Identifying Where the Failure Is Coming From
+
+**Containers** are packaged applications that are shipped together with their libraries and dependencies. Each application is executed in a separate container, completely independent of any other applications running on the same machine. Now, one of the neat characteristics of containerized applications is that you can deploy the same container to your local workstation to a server running on-premise or to cloud infrastructure provided by different vendors. This can be really helpful when trying to understand if the failure is in the code or the infrastructure. You simply deploy the container somewhere else and check if it behaves the same way. When using containers, the typical architecture is to have a lot of small containers that take care of different parts of the service. This means that the overall system can get really complex and when something breaks, it can be hard to identify where the problem is coming from. The key to solving problems in the container world is to make sure you have good logs coming in from all of the parts of the system. And, that you can bring up test instances of each of the applications to try things out when necessary.
+
+Q: When troubleshooting, what is it called when an error or failure occurs, and the service is downgraded to a previous working version? Rollback. Rollback  is the process of restoring a database or program to a previously defined state, usually to recover from an error.
+
+---
 
 ## Credit
 
