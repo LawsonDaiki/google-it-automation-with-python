@@ -62,7 +62,7 @@ This is another place where a load balancer and instance groups can help us out.
 
 Q: Automation tools are used to manage the software development phase's build and test functions. Which of the following is the set of development practices focusing on these aspects? Continuous Integration. Continuous Integration means the software is built, uploaded, and tested constantly.
 
-## Understanding Limitations
+### Understanding Limitations
 
 Some API calls used in Cloud services can be expensive to perform, so most Cloud providers will enforce **rate limits** on these calls to prevent one service from overloading the whole system. For example, there might be a rate limit of one call per second for an expensive API call. On top of that, there are also utilization limits, which cap the total amount of a certain resource that you can provision. These quotas are there to help you avoid unintentionally allocating more resources than you wanted. Imagine you've configured your service to use auto scaling and it suddenly receives a huge spike in traffic. This could mean a lot of new instances getting deployed which can cost a lot of money.
 
@@ -70,7 +70,7 @@ On top of that, there are also **utilization limits**, which cap the total amoun
 
 Q: What is the purpose of a rate limit? To prevent overloading the entire system with one service. Cloud providers will often enforce rate limits on resource-hungry service calls to prevent one service from overloading the entire system.
 
-## Reading: More About Cloud Providers
+### Reading: More About Cloud Providers
 
 Here are some links to some common Quotas you’ll find in various cloud providers
 
@@ -78,7 +78,7 @@ Here are some links to some common Quotas you’ll find in various cloud provide
 * https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html
 * https://docs.microsoft.com/en-us/azure/azure-subscription-service-limits#service-specific-limits
 
-## Practice Quiz: Building Software for the Cloud
+### Practice Quiz: Building Software for the Cloud
 
 1. What is latency in terms of Cloud storage? The amount of time it takes to complete a read or write operation. Latency is the amount of time it takes to complete a read or write operation.
 2. Which of the following statements about sticky sessions are true? (Select all that apply.) All requests from the same client always go to the same backend server. They should only be used when needed. They can cause problems during migration.
@@ -184,9 +184,59 @@ Q: Which of the following is a valid method of troubleshooting a cloud service? 
 
 ### Identifying Where the Failure Is Coming From
 
+If you're seeing weird problems and you have no idea what could be going on, you can try bringing up your service in a **different region** and checking if the failure happens there too. If it works fine there, it's likely that there's an issue with the cloud infrastructure and you should bring it up with your provider. If it fails in the other regions too, it's likely that it's a problem with your system. Similarly, if you're seeing problems related to resource usage, you can try running the same system in a **different machine** type and checking how it behaves there. This could help out, for example, if your service takes too much time to process incoming requests. By changing your service to more powerful machines, you might improve the overall performance. Another option that we've mentioned a bunch is doing **rollbacks** for the pieces that have recently changed. Having all your infrastructure stored as code in a version control system will let you access the history of the changes to each component in the system. When setting up your service, you should make sure that you can deploy and roll back each individual piece. Imagine you get an alert saying that the web servers in your application are using a lot more memory than they used to you. You don't know why but you know that a new version was deployed a couple of days ago. By rolling back to the previous version, you can verify if that change was at fault or not. If the server's work fine after the rollback, you can investigate the specific changes and try to figure out why they're using so much more memory. If the server's are still using a lot of memory after the rollback, it means something else is up. In an earlier video, we touched briefly upon one popular option when running things on the cloud called containers.
+
 **Containers** are packaged applications that are shipped together with their libraries and dependencies. Each application is executed in a separate container, completely independent of any other applications running on the same machine. Now, one of the neat characteristics of containerized applications is that you can deploy the same container to your local workstation to a server running on-premise or to cloud infrastructure provided by different vendors. This can be really helpful when trying to understand if the failure is in the code or the infrastructure. You simply deploy the container somewhere else and check if it behaves the same way. When using containers, the typical architecture is to have a lot of small containers that take care of different parts of the service. This means that the overall system can get really complex and when something breaks, it can be hard to identify where the problem is coming from. The key to solving problems in the container world is to make sure you have good logs coming in from all of the parts of the system. And, that you can bring up test instances of each of the applications to try things out when necessary.
 
 Q: When troubleshooting, what is it called when an error or failure occurs, and the service is downgraded to a previous working version? Rollback. Rollback  is the process of restoring a database or program to a previously defined state, usually to recover from an error.
+
+### Recovering from Failure
+
+**Backups** of the data your service handles are extremely important. If you operate a service that stores any kind of data, it's critical that you implement automatic backups and that you periodically check that those backups are working correctly by performing restores.
+
+But if your service goes down for some reason, deploying all that infrastructure from scratch might take a while. That's why many teams keep backup or a **secondary instances** of their services already up and running. That way, if there's a problem with the primary instance, they can simply point the load balancer or the DNS entries to the secondary instance with minimal disruption to the service.
+
+Alternatively, it's common practice to **have enough servers** running at any time so that if one of them goes down, the others can still handle the traffic, or on a larger scale, have the service running on different data centers around the world, so that if one of the data centers has a problem, the service can still be provided by the instances running in the other data centers.
+
+Q: Which of the following are important aspects of disaster recovery? (Select all that apply)
+
+* Having multiple points of redundancy. Having several forms of redundancy, and failover reduces the impact when failure happens.
+* Having a well-documented disaster recovery plan. In order to get things up and running as quickly as possible, we need to have a detailed plan.
+* Having automatic backups. Having automatic backups makes it easier to restore and recover.
+
+### Reading: Debugging Problems on the Cloud
+
+Check out the following links for more information:
+
+* https://cloud.google.com/compute/docs/troubleshooting/troubleshooting-instances
+* https://docs.microsoft.com/en-us/azure/virtual-machines/troubleshooting/
+* https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-troubleshoot.htm
+
+### Practice Quiz: Troubleshooting & Debugging
+
+1. Which of the following are valid strategies for recovery after encountering service failure? (Select all that apply.)
+
+* Switching to a secondary instance. A quick way to recover is to have a secondary instance of the VM running your service that you can quickly switch to.
+* Restoring from backup. As long as you've been keeping frequent backups, restoring a previous VM image will often get you where you need to be.
+* Performing a rollback to a previous version. If the problem is related to recent changes or updates, rolling back to a previous working version of the service or supporting software will give the time to investigate further.
+
+2. Which of the following concepts provide redundancy? (Select all that apply.)
+
+* Having a secondary instance of a VM. If your primary VM instance running your service fails, having a secondary instance running in the background ready to take over can provide instant failover.
+* Having a secondary Cloud vendor. Having a secondary Cloud service provider on hand with your data in case of the first provider having large-scale outages can provide redundancy for a worst-case scenario.
+
+3. If you operate a service that stores any kind of data, what are some critical steps to ensure disaster recovery? (Select all that apply)
+
+* Implement automated backups. As long as we have viable backup images, we can restore the VM running our service.
+* Test backups by restoring. It's important to know that our backup process is working correctly. It would not do to be in a recovery situation and not have backups.
+
+4. What is the correct term for packaged applications that are shipped with all needed libraries and dependencies, and allows the application to run in isolation? Containers.
+
+5. Using a large variety of containerized applications can get complicated and messy. What are some important tips for solving problems when using containers? (Select all that apply)
+
+* Use extensive logging in all parts. As long as we have the right logs in the right places, we can tell where our problems are.
+* Use tests instances. We should take every opportunity to test and retest that our configuration is working properly.
+
 
 ---
 
