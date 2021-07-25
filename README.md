@@ -6,9 +6,7 @@ Status: Completed
 
 This repository was created to keep track of [Google IT Automation With Python](https://www.coursera.org/professional-certificates/google-it-automation) provided by Coursera. This program is developed by Google and designed to teach how to program with Python and how to use Python to automate common system administration tasks. Also, the course will teach how to use Git and GitHub, troubleshoot and debug complex problems, and apply automation at scale by using configuration management and the Cloud.
 
-My certification of successful completion of Google Google IT Automation with Python Specialization:
-
-![specialization-certificate](https://coursera.org/share/babedac331225a33df06e8a3e5ffb607)
+My certification of successful completion of Google Google IT Automation with Python Specialization: [Google-certificate](https://coursera.org/share/babedac331225a33df06e8a3e5ffb607)
 
 ---
 
